@@ -1,0 +1,27 @@
+name: ToolchainManager
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+
+  release:
+
+    name: Release ToolchainManager
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ToolchainManager Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          fail_on_unmatched_files: true
+          files: tcmgr_*.tar.gz
